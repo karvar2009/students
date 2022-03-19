@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1 class="text-center">Добавить ученика</h1>
+    <form action="" method="post">
+    {{ form.hidden_tag() }} <!-- подключаем секретный ключ -->
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control", value=student.name )}}
+        </div>
+        <div class="mb-3">
+            {{ form.birth_date.label(class="form-label") }}
+            {{ form.birth_date(class="form-control", value=student.birth_date)}}
+        </div>
+        <div class="mb-3">
+            {{ form.mark.label(class="form-label") }}
+            {{ form.mark(class="form-control", value=student.mark) }}
+        </div>
+        <div class="mb-3">
+            {{ form.subject.label(class="form-label") }}
+            {{ form.subject(class="form-select")}}
+        </div>
+        <div class="mb-3">
+            {{ form.status.label(class="form-label") }}
+            {{ form.status(class="form-select", value=student.status) }}
+        </div>
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-outline-primary") }}
+        </div>
+    </form>
+{% endblock %}

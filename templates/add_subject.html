@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1 class="text-center">Добавить предмет</h1>
+    <form action="" method="post">
+    {{ form.hidden_tag() }} <!-- подключаем секретный ключ -->
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-outline-primary") }}
+        </div>
+    </form>
+
+
+
+    <br>
+
+
+    {% if items|length > 0 %} <!-- если предметов больше нуля, то -->
+        <table class="lable table-striped">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for subject in items %} <!--Для каждого предмета-->
+                <tr> <!--создаётся строка-->
+                    <td>{{ subject.name }}</td>
+                    <td style="padding: 0.5em"><a href="delete-ыгио/{{ subject.id }}" class="btn btn-danger">УДАЛИТЬ</a></td>
+                </tr>
+            {% endfor %}
+
+        </tbody>
+        </table>
+    {% endif %}
+{% endblock %}

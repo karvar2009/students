@@ -1,0 +1,61 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <h1 class="text-center">Добавить ученика</h1>
+    <form action="" method="post">
+    {{ form.hidden_tag() }} <!-- подключаем секретный ключ -->
+        <div class="mb-3">
+            {{ form.name.label(class="form-label") }}
+            {{ form.name(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.birth_date.label(class="form-label") }}
+            {{ form.birth_date(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.mark.label(class="form-label") }}
+            {{ form.mark(class="form-control") }}
+        </div>
+        <div class="mb-3">
+            {{ form.subject.label(class="form-label") }}
+            {{ form.subject(class="form-select") }}
+        </div>
+        <div class="mb-3">
+            {{ form.status.label(class="form-label") }}
+            {{ form.status(class="form-select") }}
+        </div>
+        <div class="mb-3">
+            {{ form.submit(class="btn btn-outline-primary") }}
+        </div>
+    </form>
+
+    <br>
+    {% if items|length > 0 %} <!-- если студентов больше нуля, то -->
+        <table class="lable table-striped">
+            <thead>
+                <tr>
+                    <th>Имя</th>
+                    <th>Дата рождения</th>
+                    <th>Средняя оценка</th>
+                    <th>Усиленный предмет</th>
+                    <th>Статус</th>
+                </tr>
+            </thead>
+        <tbody>
+            {% for student in items %} <!--Для каждого студента-->
+                <tr> <!--создаётся строка-->
+                    <td><a href="/update-student/{{ student.id }}">{{ student.name }}</a></td>
+                    <td>{{ student.birth_date }}</td>
+                    <td>{{ student.mark }}</td>
+                    <td>{{ student.subjects.name }}</td>
+                    <td>{{ student.status }}</td>
+                    <td><a href="delete/{{ student.id }}" class="btn btn-danger">УДАЛИТЬ</a></td>
+                </tr>
+            {% endfor %}
+            
+        </tbody>
+        </table>
+    {% endif %} 
+
+{% endblock %}
