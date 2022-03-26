@@ -4,7 +4,7 @@ from forms import StudentForm, SubjectForm
 from models import Subjects, Students, User
 
 
-@login.user_loader()
+@login.user_loader
 def load_user(id):
     return User.query.get(int(id))
 
