@@ -51,3 +51,7 @@ class RegisterForm(FlaskForm):
         keys = keyy.query.filter_by(keyy=keyy.data).first()
         if keys is None:
             raise ValidationError('Такого ключа нет!!!')
+
+class TeacherForm(FlaskForm):
+    name = StringField('Ваше имя:* ', validators=[DataRequired()])
+    subject = SelectField('Ваш предмет', choices=[])

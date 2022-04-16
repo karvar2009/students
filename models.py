@@ -7,7 +7,7 @@ from flask_login import UserMixin
 class Subjects(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), nullable=False)
-
+    teacher_id = db.Column(db.Integer, db.ForeignKey('teachers.id'))
     student = db.relationship('Students', backref='subjects', lazy=True)
 
 
@@ -36,3 +36,9 @@ class User(db.Model, UserMixin):
 class Keys(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     keyy = db.Column(db.String(64), index=True, unique=True)
+
+
+class Teachers(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(255), primary_key=True)
+    subj_id = db.relationship('subjects', backref='teachers', lazy=True)
